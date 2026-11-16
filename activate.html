@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script>try{var t=localStorage.getItem("aloe-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get your license. Aloe Scribe.</title>
+<meta name="description" content="Turn your Aloe Scribe receipt or code into the license you paste into the app.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="canonical" href="https://aloescribe.ai/activate.html">
+<style>
+  :root {
+    --green: #2F8F5B; --green-dark: #256F47; --ink: #2B342E; --body: #4A554D;
+    --caption: #8B948C; --line: #E2E9E4; --paper: #F6FAF7; --white: #FFFFFF;
+    --red: #B0413E;
+  }
+  html[data-theme="dark"] {
+    --green: #5FB584; --green-dark: #7CC79B; --ink: #E6EEE8; --body: #AEB8B0;
+    --caption: #9AAAA0; --line: #2E3B32; --paper: #1B231D; --white: #131A15;
+    --red: #E07A73; color-scheme: dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) {
+      --green: #5FB584; --green-dark: #7CC79B; --ink: #E6EEE8; --body: #AEB8B0;
+      --caption: #9AAAA0; --line: #2E3B32; --paper: #1B231D; --white: #131A15;
+      --red: #E07A73; color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--body); background: var(--white); line-height: 1.65; font-size: 1.0625rem;
+  }
+  .wrap { max-width: 38rem; margin: 0 auto; padding: 0 1rem; }
+  a { color: var(--green); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header.site { border-bottom: 1px solid var(--line); }
+  .nav { max-width: 60rem; margin: 0 auto; padding: 0.85rem 1rem; display: flex; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 650; color: var(--ink); font-size: 1.05rem; }
+  .brand img { width: 26px; height: 26px; }
+  .brand-green { color: var(--green); }
+  main { padding: 3rem 0 4rem; }
+  h1 { color: var(--ink); font-size: 2rem; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 0.8rem; }
+  .lede { margin-bottom: 1.8rem; }
+  .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+  .tab {
+    border: 1.5px solid var(--line); background: var(--white); color: var(--body);
+    padding: 0.5rem 1rem; border-radius: 10px; font: inherit; font-size: 0.95rem; cursor: pointer;
+  }
+  .tab[aria-selected="true"] { border-color: var(--green); color: var(--green-dark); font-weight: 600; }
+  form { display: grid; gap: 0.9rem; }
+  label { display: grid; gap: 0.3rem; font-size: 0.92rem; color: var(--ink); font-weight: 600; }
+  input, textarea {
+    font: inherit; font-weight: 400; font-size: 1rem; color: var(--ink); background: var(--paper);
+    border: 1.5px solid var(--line); border-radius: 10px; padding: 0.65rem 0.8rem; width: 100%;
+  }
+  input:focus, textarea:focus { outline: none; border-color: var(--green); }
+  .btn {
+    justify-self: start; background: var(--green); color: var(--white); border: none; cursor: pointer;
+    padding: 0.7rem 1.35rem; border-radius: 10px; font: inherit; font-weight: 600;
+  }
+  .btn:disabled { opacity: 0.6; cursor: default; }
+  .caption { color: var(--caption); font-size: 0.88rem; }
+  .err { color: var(--red); font-size: 0.95rem; }
+  .result { margin-top: 2rem; display: none; }
+  .result textarea {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.8rem;
+    height: 11rem; resize: vertical; margin: 0.8rem 0;
+  }
+  .steps { margin: 1rem 0 0 1.2rem; }
+  .steps li + li { margin-top: 0.3rem; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header class="site">
+  <nav class="nav">
+    <a class="brand" href="index.html"><img src="assets/icon.png" alt=""><span>Aloe&nbsp;<span class="brand-green">Scribe</span></span></a>
+  </nav>
+</header>
+<main>
+  <div class="wrap">
+    <h1>Get your license</h1>
+    <p class="lede">Paste the key from your receipt, or the code someone gave you. This page turns it into the license you paste into Aloe Scribe. The app checks it on your computer and never goes online for it.</p>
+
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tabStore" aria-selected="true">I bought a license</button>
+      <button class="tab" role="tab" id="tabCode" aria-selected="false">I have a code</button>
+    </div>
+
+    <form id="storeForm">
+      <label>License key from your receipt email
+        <input id="storeKey" autocomplete="off" spellcheck="false" placeholder="ALOE-XXXX-XXXX-XXXX">
+      </label>
+      <button class="btn" type="submit">Get my license</button>
+      <p class="caption">Lost it? The same key gets the same license again, as many times as you need.</p>
+    </form>
+
+    <form id="codeForm" hidden>
+      <label>Code
+        <input id="code" autocomplete="off" spellcheck="false" placeholder="FRIEND-XXXXXX">
+      </label>
+      <label>Your name, as the license should show it
+        <input id="name" autocomplete="name">
+      </label>
+      <label>Your email
+        <input id="email" type="email" autocomplete="email">
+      </label>
+      <button class="btn" type="submit">Get my license</button>
+      <p class="caption">The email is only for sending a lost license again. Nothing else is sent to it.</p>
+    </form>
+
+    <p class="err" id="err" role="alert"></p>
+
+    <div class="result" id="result">
+      <h2 style="color: var(--ink); font-size: 1.3rem;">Your license</h2>
+      <textarea id="block" readonly></textarea>
+      <button class="btn" id="copy" type="button">Copy</button>
+      <ol class="steps">
+        <li>In Aloe Scribe, open Settings.</li>
+        <li>Under License, choose Add license.</li>
+        <li>Paste it and choose Add.</li>
+      </ol>
+      <p class="caption" style="margin-top: 1rem;">The same license works on your Mac and your Windows PC. Keep a copy with your receipt.</p>
+    </div>
+  </div>
+</main>
+<script>
+(function () {
+  var URL_ = "https://yutdoypkyimlygtuzcek.supabase.co/functions/v1/license";
+  var KEY = "sb_publishable_my2ZuEr5nF4PzWhCUK641w_3jq9Sq3K";
+  var $ = function (id) { return document.getElementById(id); };
+  function show(which) {
+    var store = which === "store";
+    $("storeForm").hidden = !store; $("codeForm").hidden = store;
+    $("tabStore").setAttribute("aria-selected", String(store));
+    $("tabCode").setAttribute("aria-selected", String(!store));
+    $("err").textContent = "";
+  }
+  $("tabStore").onclick = function () { show("store"); };
+  $("tabCode").onclick = function () { show("code"); };
+  var q = new URLSearchParams(location.search);
+  if (q.get("code")) { show("code"); $("code").value = q.get("code"); }
+  if (q.get("key")) { $("storeKey").value = q.get("key"); }
+
+  function send(form, body) {
+    var btn = form.querySelector("button");
+    btn.disabled = true; $("err").textContent = "";
+    fetch(URL_, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", apikey: KEY },
+      body: JSON.stringify(body)
+    }).then(function (r) { return r.json(); }).then(function (d) {
+      btn.disabled = false;
+      if (!d || d.error || !d.block) { $("err").textContent = (d && d.error) || "That didn't work. Try again."; return; }
+      $("block").value = d.block;
+      $("result").style.display = "block";
+      $("result").scrollIntoView({ behavior: "smooth" });
+    }).catch(function () {
+      btn.disabled = false;
+      $("err").textContent = "This page couldn't reach the license service. Check your connection and try again.";
+    });
+  }
+  $("storeForm").onsubmit = function (e) {
+    e.preventDefault();
+    send(this, { action: "store", key: $("storeKey").value });
+  };
+  $("codeForm").onsubmit = function (e) {
+    e.preventDefault();
+    send(this, { action: "redeem", code: $("code").value, name: $("name").value, email: $("email").value });
+  };
+  $("copy").onclick = function () {
+    var t = $("block");
+    t.select();
+    (navigator.clipboard ? navigator.clipboard.writeText(t.value) : Promise.reject())
+      .then(function () { $("copy").textContent = "Copied"; })
+      .catch(function () { document.execCommand("copy"); $("copy").textContent = "Copied"; });
+  };
+})();
+</script>
+</body>
+</html>
