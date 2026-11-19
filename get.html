@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download Aloe Scribe</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<!-- Private download page. Not linked from the site and not in the
+     sitemap, so the owner can send aloescribe.ai/get.html to someone for a
+     straight download with no pricing in the way. The buttons follow
+     version.json, so the link never goes stale. -->
+<style>
+  :root {
+    --bg: #FFFFFF; --paper: #F3F7F4; --ink: #1C2620; --body: #46524A; --caption: #78857C;
+    --line: #DFE7E1; --green: #2F8F5B; --green-strong: #256F47; --on-green: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111713; --paper: #171F19; --ink: #E6EEE8; --body: #AEB8B0; --caption: #8C9A90;
+      --line: #27322A; --green: #5FB584; --green-strong: #7CC79B; --on-green: #0E1410;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--body);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.0625rem; line-height: 1.6;
+  }
+  main {
+    max-width: 44rem; margin: 0 auto; padding-block: 3.5rem 4rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  a { color: var(--green); }
+  .brand { display: flex; align-items: center; gap: .5rem; color: var(--ink); font-weight: 650; text-decoration: none; margin-bottom: 2rem; }
+  .brand img { width: 28px; height: 28px; }
+  h1 { color: var(--ink); font-size: 2rem; line-height: 1.15; margin: 0 0 .5rem; letter-spacing: -0.02em; }
+  h2 { color: var(--ink); font-size: 1.2rem; margin: 0; }
+  .lede { margin: 0 0 1.8rem; }
+  .two { display: grid; gap: 1rem; }
+  @media (min-width: 640px) { .two { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .card { border: 1px solid var(--line); border-radius: 12px; padding: 1.3rem 1.4rem; display: grid; gap: .6rem; align-content: start; min-width: 0; }
+  .card p { margin: 0; }
+  .btn {
+    display: inline-block; justify-self: start; background: var(--green); color: var(--on-green);
+    padding: .7rem 1.3rem; border-radius: 10px; font-weight: 600; text-decoration: none;
+  }
+  .btn:hover { background: var(--green-strong); }
+  .caption { color: var(--caption); font-size: .9rem; }
+  .fine { margin-top: 1.8rem; }
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="index.html"><img src="assets/icon.png" alt=""><span>Aloe Scribe</span></a>
+  <h1>Download Aloe Scribe</h1>
+  <p class="lede">It records your meetings and writes the transcript, speaker names and summary on your own computer. No account, and nothing to buy to download it.</p>
+
+  <div class="two">
+    <div class="card">
+      <h2>Mac</h2>
+      <p class="caption">Apple Silicon (M1 or later), macOS 13 or newer, 16 GB of memory recommended.</p>
+      <a class="btn" id="mac-btn" href="https://github.com/vinnybarbs/aloescribe/releases/download/mac-v1.3.47/AloeScribe-1.3.47.dmg">Download for Mac</a>
+      <p class="caption" id="mac-meta">Version 1.3.47. Open the file and drag Aloe Scribe to Applications.</p>
+    </div>
+    <div class="card">
+      <h2>Windows</h2>
+      <p class="caption">64-bit Windows 10 or 11, 16 GB of memory recommended. No admin rights needed.</p>
+      <a class="btn" id="win-btn" href="https://github.com/vinnybarbs/aloescribe/releases/download/windows-v1.3.47/AloeScribeSetup.exe">Download for Windows</a>
+      <p class="caption" id="win-meta">Version 1.3.47, about 1.8 GB. If Windows SmartScreen warns, click More info, then Run anyway.</p>
+    </div>
+  </div>
+
+  <p class="caption fine">Tell the people on a call that you are taking notes with it, as you would with any recorder. Questions go to <a href="mailto:feedback@aloescribe.ai?subject=Aloe%20Scribe">feedback@aloescribe.ai</a>.</p>
+</main>
+<script>
+fetch('version.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (v) {
+  if (v.mac && v.mac.url) {
+    document.getElementById('mac-btn').href = v.mac.url;
+    document.getElementById('mac-meta').textContent = 'Version ' + v.mac.version + '. Open the file and drag Aloe Scribe to Applications.';
+  }
+  if (v.windows && v.windows.url) {
+    document.getElementById('win-btn').href = v.windows.url;
+    document.getElementById('win-meta').textContent = 'Version ' + v.windows.version + ', about 1.8 GB. If Windows SmartScreen warns, click More info, then Run anyway.';
+  }
+}).catch(function () {});
+// Cookieless download counts, so you can see the private link being used.
+function count(which) {
+  try {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: 'private-download-' + which, event: true });
+    }
+  } catch (e) {}
+}
+document.getElementById('mac-btn').addEventListener('click', function () { count('mac'); });
+document.getElementById('win-btn').addEventListener('click', function () { count('windows'); });
+</script>
+<script data-goatcounter="https://aloescribe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

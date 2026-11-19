@@ -203,7 +203,7 @@
     <h2>The real difference is where the processing happens</h2>
     <p>Granola got the form factor right, and we say that as fans. A quiet notepad that enhances your own typed notes is the best interaction design in this category, and Aloe Scribe's notepad comes from the same school. Where the two products part ways is architecture. Granola records locally but processes in the cloud. Its <a href="https://www.granola.ai/security">security page</a> says meeting audio goes to transcription providers such as Deepgram and Assembly, notes are written by AI providers such as OpenAI and Anthropic, and the resulting transcripts are stored on Granola's servers. Granola does not keep the audio itself, but your meeting content leaves your machine by design, because that is how the product works.</p>
     <p>That design now has legal weight on it. A putative class action, <em>Chamberlain v. Granola</em>, was filed in the Northern District of California in July 2026, alleging that Granola records participants without their consent and uses transcripts to train its models by default, with the opt-out belonging to the account holder rather than the people recorded. See <a href="https://natlawreview.com/article/ai-note-taking-tools-silent-recording-and-consent-problem">the National Law Review's analysis</a> and <a href="https://basilai.app/articles/2026-08-05-chamberlain-v-granola-invisible-ai-notetaker-wiretap-lawsuit.html">this case summary</a>. These are allegations, not findings, and the case may go nowhere. But the exposure only exists because a vendor holds copies of the meetings.</p>
-    <p>Aloe Scribe removes the vendor. Recording, transcription, speaker identification, and the summary all run on your computer. There is no transcription service to subpoena, no training default to audit, and no server to breach. The only network calls the app makes are model downloads and update checks.</p>
+    <p>Aloe Scribe removes the vendor. Recording, transcription, speaker identification, and the summary all run on your computer. There is no transcription service to subpoena, no training default to audit, and no server to breach. The app never phones home. It only goes online when you ask it to, to download its models, check for updates or reach a model server you add.</p>
   </div>
 </section>
 
@@ -227,7 +227,7 @@
       </tr>
       <tr>
         <th>What leaves the machine</th>
-        <td>Nothing. The only network calls are model downloads and update checks.</td>
+        <td>None of your meetings. The app only goes online when you ask it to, for setup and updates, or to reach a model server you add.</td>
         <td>Audio streams out for transcription, transcripts go to OpenAI or Anthropic for notes, and transcripts are stored on Granola's servers. Audio itself is not retained.</td>
       </tr>
       <tr>
@@ -247,7 +247,7 @@
       </tr>
       <tr>
         <th>Price</th>
-        <td>Free while in beta. No account.</td>
+        <td>Free to download, and recording and transcripts stay free. From version 1.4, summaries, Ask notes answers and the voice bank need a license, $29.99 once through December 31, 2026, then $49.99, with a year of updates. One license covers Mac and Windows. No account.</td>
         <td>Free Basic plan. Business at $14 per user per month, Enterprise at $35, per <a href="https://www.granola.ai/pricing">Granola's pricing page</a>.</td>
       </tr>
       <tr>
@@ -282,7 +282,7 @@
       <li>You want speaker names that come from the audio itself, in any meeting app, not just the platforms with an integration.</li>
       <li>You want your notes as plain files you own. Open Markdown on your disk cannot be locked away from your own scripts and tools.</li>
       <li>You work offline or on networks where streaming meeting audio out is not an option.</li>
-      <li>You would rather not pay per seat. Aloe Scribe is free while in beta, with no account.</li>
+      <li>You would rather not pay per seat. Aloe Scribe is one payment with a year of updates, not a subscription, and needs no account.</li>
     </ul>
   </div>
 </section>
@@ -305,7 +305,7 @@
   <div class="wrap">
     <p class="brand"><img src="assets/icon.png" alt=""><span>Aloe&nbsp;<span class="brand-green">Scribe</span></span></p>
     <p>The private meeting notepad. Your audio never leaves the machine.</p>
-    <p><a href="index.html">Home</a> · <a href="security.html">Security and privacy</a> · <a href="recording-laws.html">Recording laws</a> · <a href="vs-otter.html">Aloe Scribe vs Otter</a> · <a href="vs-macwhisper.html">Aloe Scribe vs MacWhisper</a> · <a href="mailto:feedback@aloescribe.ai?subject=Aloe%20Scribe">Contact us</a> · <a href="https://github.com/vinnybarbs/aloescribe">GitHub</a></p>
+    <p><a href="index.html">Home</a> · <a href="security.html">Security and privacy</a> · <a href="recording-laws.html">Recording laws</a> · <a href="vs-otter.html">Aloe Scribe vs Otter</a> · <a href="vs-macwhisper.html">Aloe Scribe vs MacWhisper</a> · <a href="index.html#pricing">Pricing</a> · <a href="privacy.html">Privacy policy</a> · <a href="terms.html">License terms</a> · <a href="refunds.html">Refunds</a> · <a href="mailto:feedback@aloescribe.ai?subject=Aloe%20Scribe">Contact us</a> · <a href="https://github.com/vinnybarbs/aloescribe">GitHub</a></p>
       <p class="caption">Site analytics are cookieless page counts by <a href="https://www.goatcounter.com" rel="noopener">GoatCounter</a>. No cookies, no fingerprinting, no personal data. The app never phones home. It only goes online when you ask it to, for setup and updates.</p>
   </div></footer>
 

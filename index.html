@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Aloe Scribe","operatingSystem":"macOS, Windows","applicationCategory":"BusinessApplication","description":"Local meeting transcription with speaker identification and on-device summaries. No bot, no cloud.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","description":"Free while in beta"},"url":"https://aloescribe.ai/"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Aloe Scribe","operatingSystem":"macOS, Windows","applicationCategory":"BusinessApplication","description":"Local meeting transcription with speaker identification and on-device summaries. No bot, no cloud.","offers":{"@type":"Offer","price":"29.99","priceCurrency":"USD","priceValidUntil":"2026-12-31","url":"https://aloescribe.ai/#pricing","description":"Founding license, paid once. Covers Mac and Windows and a year of updates. Free to download, with recording and transcripts free."},"url":"https://aloescribe.ai/"}
 </script>
 <style>
   /* Headline face, served from this site so no font host sees a visitor.
@@ -388,6 +388,10 @@
   .card ul { margin: 0; padding-left: 1.1rem; font-size: .97rem; }
   .dl-row { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; margin-top: .4rem; }
   .card.wide { margin-top: 1.25rem; }
+  .price { font-family: var(--display); font-size: 2.1rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
+  .price span { font-family: var(--text); font-size: 1rem; font-weight: 600; color: var(--caption); letter-spacing: 0; }
+  .price-card { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
+  .card.wide p + p { margin-top: .2rem; }
   .signup-row { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .3rem; }
   .signup-row input {
     flex: 1 1 15rem; min-width: 0; padding: .7rem .9rem; border-radius: 10px; border: 1px solid var(--line);
@@ -421,6 +425,7 @@
       <a href="#files">Your files</a>
       <a href="#ai">Your AI</a>
       <a href="#data">Your data</a>
+      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="security.html">Security</a>
       <a href="mailto:feedback@aloescribe.ai?subject=Aloe%20Scribe">Contact</a>
@@ -439,10 +444,10 @@
           <h1>The private meeting notepad.</h1>
           <p class="lede">Aloe Scribe records, transcribes and summarizes your meetings on your own computer. No bot joins the call, and your audio never leaves the machine.</p>
           <div class="actions">
-            <a href="#download" class="btn">Download the free beta</a>
+            <a href="#download" class="btn">Download free</a>
             <a href="#walk" class="btn ghost">See one meeting, start to finish</a>
           </div>
-          <p class="caption">Free while in beta. No account, no upload.</p>
+          <p class="caption">Free to download. No account, no upload.</p>
         </div>
         <div class="hero-shot">
           <div class="win shot">
@@ -506,7 +511,7 @@
               <p class="when"><span class="num">3</span><span class="kicker">Weeks later</span></p>
               <h3>Ask, and see the quotes before the answer.</h3>
               <p>Ask notes searches every meeting by words and by meaning, along with the contact pages and documents in your notes folder. The quotes appear the moment you press Ask. Then a model on your computer writes the answer under them, with numbered sources.</p>
-              <p>Follow-ups keep the thread. Ask it to draft a two-line email to Sam and it knows which Sam. No question and no note leaves the computer, and a question costs nothing.</p>
+              <p>Follow-ups keep the thread. Ask it to draft a two-line email to Sam and it knows which Sam. With the built-in model, no question and no note leaves the computer, and a question costs nothing.</p>
             </div>
             <div class="win shot inline-shot">
               <div class="win-bar"><i></i><i></i><i></i><span>Ask your notes</span></div>
@@ -751,7 +756,7 @@
       </div>
       <div class="no-net">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
-        <p>The only network calls download the app and its models, and check for updates when you click. There is no account and no telemetry on meeting content. Recording locally does not waive consent laws, so tell people you are recording where the law or your policy requires it.</p>
+        <p>The app never phones home. It only goes online when you ask it to, to download its models, check for updates or reach a model server you add. There is no account and no telemetry. Recording locally does not waive consent laws, so tell people you are recording where the law or your policy requires it.</p>
       </div>
     </div>
   </section>
@@ -790,12 +795,56 @@
     </div>
   </section>
 
+  <section id="pricing" class="ruled">
+    <div class="wrap">
+      <div class="head">
+        <p class="kicker">Pricing</p>
+        <h2>Free to record. Pay once for the summaries.</h2>
+        <p>Recording, transcripts, speaker labels and your notes are free and stay free. A license adds the parts the AI model writes. You pay once, not every month, and a year of updates is included.</p>
+      </div>
+      <div class="two">
+        <div class="card">
+          <h3>Free</h3>
+          <p class="price">$0</p>
+          <ul>
+            <li>Recording from your mic and the call</li>
+            <li>The live transcript</li>
+            <li>Speaker labels</li>
+            <li>Every note you save, as plain files you keep</li>
+            <li>Search across all your notes</li>
+          </ul>
+        </div>
+        <div class="card price-card">
+          <h3>Founding license</h3>
+          <p class="price">$29.99 <span>once</span></p>
+          <p class="caption">This price runs through December 31, 2026. After that a license is $49.99.</p>
+          <ul>
+            <li>Summaries with decisions and action items</li>
+            <li>Written answers in Ask notes</li>
+            <li>The voice bank, which knows voices from earlier meetings</li>
+            <li>Your Mac and your Windows PC on one license</li>
+            <li>Every update for a year, then $19.99 a year if you want more</li>
+            <li>A full refund within 30 days, for any reason</li>
+          </ul>
+          <div class="dl-row"><a class="btn" href="buy.html" id="buy-btn">Get the founding license</a></div>
+        </div>
+      </div>
+      <div class="card wide">
+        <h3>What changes, and when</h3>
+        <p>Today every feature works for free, with nothing to enter. Version 1.4 arrives on December 1. From then, a new install gets every feature for its first 10 meetings, with no time limit, and summaries, Ask notes answers and the voice bank need a license after that. If you use Aloe Scribe before 1.4, you keep every feature through December 31.</p>
+        <p>A license unlocks every version released in the year after you buy it, and those versions keep working with no end date. After that year, the version you have keeps every feature. Another year of updates is $19.99, and you only pay it if you want the newer versions.</p>
+        <p>When you buy, your license key arrives by email right away. You activate it once when 1.4 arrives, and from then on the app checks it on your computer. There is no account, and the app never calls a license server.</p>
+        <p class="caption">Read the <a href="terms.html">license terms</a>, the <a href="refunds.html">refund policy</a> and the <a href="privacy.html">privacy policy</a>.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="download" class="ruled">
     <div class="wrap">
       <div class="head">
         <p class="kicker">Download</p>
         <h2>Get Aloe Scribe</h2>
-        <p>Free while in beta. Pricing will be announced later.</p>
+        <p>Free to download, and every feature works today. <a href="#pricing">Pricing</a> shows what changes on December 1.</p>
       </div>
       <div class="two">
         <div class="card" id="mac-card">
@@ -823,7 +872,7 @@
           <input type="email" id="signup-email" name="email" placeholder="you@example.com" required autocomplete="email" aria-label="Email address">
           <button class="btn" type="submit" id="signup-btn">Keep me posted</button>
         </form>
-        <p class="caption" id="signup-msg">Your address goes in our own database, is used only for release announcements, and any reply unsubscribes you.</p>
+        <p class="caption" id="signup-msg">Your address goes in our own database, is used only for release announcements, and any reply unsubscribes you. See the <a href="privacy.html">privacy policy</a>.</p>
       </div>
     </div>
   </section>
@@ -850,7 +899,7 @@
       </details>
       <details>
         <summary>What does it cost?</summary>
-        <p>It is currently free while in beta. Pricing will be announced. There is no account, so there is nothing to sign up for now and nothing that expires.</p>
+        <p>Aloe Scribe is free to download, and today every feature works. Recording, transcripts, speaker labels and your saved notes stay free with no limit. A founding license is $29.99 once through December 31, 2026, then $49.99. From version 1.4 on December 1, summaries, written answers in Ask notes and the voice bank need a license after a new install&rsquo;s first 10 meetings. If you start before 1.4, you keep every feature through December 31. One license covers your Mac and your Windows PC and includes a year of updates. After that year the version you have keeps working, and another year of updates is $19.99. You can get a full refund within 30 days. There is still no account. The details are in <a href="#pricing">Pricing</a>.</p>
       </details>
       <details>
         <summary>How does it compare to Granola, Otter or MacWhisper?</summary>
@@ -884,7 +933,7 @@
   <div class="wrap">
     <p class="brand"><img src="assets/icon.png" alt=""><span>Aloe <b>Scribe</b></span></p>
     <p>The private meeting notepad. Your audio never leaves the machine.</p>
-    <p><a href="security.html">Security and privacy</a> · <a href="recording-laws.html">Recording laws</a> · <a href="vs-granola.html">vs Granola</a> · <a href="vs-otter.html">vs Otter</a> · <a href="vs-macwhisper.html">vs MacWhisper</a> · <a href="mailto:feedback@aloescribe.ai?subject=Aloe%20Scribe">Contact us</a> · <a href="https://github.com/vinnybarbs/aloescribe">GitHub</a></p>
+    <p><a href="#pricing">Pricing</a> · <a href="security.html">Security</a> · <a href="privacy.html">Privacy policy</a> · <a href="terms.html">License terms</a> · <a href="refunds.html">Refunds</a> · <a href="recording-laws.html">Recording laws</a> · <a href="vs-granola.html">vs Granola</a> · <a href="vs-otter.html">vs Otter</a> · <a href="vs-macwhisper.html">vs MacWhisper</a> · <a href="mailto:feedback@aloescribe.ai?subject=Aloe%20Scribe">Contact us</a> · <a href="https://github.com/vinnybarbs/aloescribe">GitHub</a></p>
     <p class="caption">The people and companies in the screenshots are made up. Site analytics are cookieless page counts by <a href="https://www.goatcounter.com" rel="noopener">GoatCounter</a>. No cookies, no fingerprinting, no personal data. The app never phones home. It only goes online when you ask it to, for setup and updates.</p>
   </div>
 </footer>
