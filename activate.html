@@ -107,7 +107,7 @@
         <input id="email" type="email" autocomplete="email">
       </label>
       <button class="btn" type="submit">Get my license</button>
-      <p class="caption">The email is only for sending a lost license again. Nothing else is sent to it.</p>
+      <p class="caption">Each code works once, so copy your license when it appears. The email is only for sending a lost license again. Nothing else is sent to it.</p>
     </form>
 
     <p class="err" id="err" role="alert"></p>
@@ -121,7 +121,8 @@
         <li>Under License, choose Add license.</li>
         <li>Paste it and choose Add.</li>
       </ol>
-      <p class="caption" style="margin-top: 1rem;">The same license works on your Mac and your Windows PC. Keep a copy with your receipt.</p>
+      <p class="caption" id="updates" style="margin-top: 1rem;" hidden></p>
+      <p class="caption">The same license works on your Mac and your Windows PC. Keep a copy with your receipt.</p>
     </div>
   </div>
 </main>
@@ -154,6 +155,13 @@
       btn.disabled = false;
       if (!d || d.error || !d.block) { $("err").textContent = (d && d.error) || "That didn't work. Try again."; return; }
       $("block").value = d.block;
+      var until = d.updates_until && new Date(d.updates_until + "T12:00:00Z");
+      $("updates").hidden = !until;
+      if (until) {
+        $("updates").textContent = "It includes every update released through " +
+          until.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) +
+          ". Those versions stay yours after that date.";
+      }
       $("result").style.display = "block";
       $("result").scrollIntoView({ behavior: "smooth" });
     }).catch(function () {

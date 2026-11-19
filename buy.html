@@ -6,24 +6,123 @@
 <title>Buy a license. Aloe Scribe.</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="assets/icon.png">
-<!-- The app's Buy a license button opens aloescribe.ai/buy, so the store
-     can change without an app release. Put the Polar checkout link in
-     CHECKOUT below; until it is set, this page points to the sign-up. -->
+<!-- The app's Buy a license button and the site's pricing button open
+     aloescribe.ai/buy, so the store can change without an app release.
+     Put the Polar checkout link in CHECKOUT below. Until it is set, this
+     page takes an email for the founding price instead. -->
 <script>
   var CHECKOUT = "";
   if (CHECKOUT) location.replace(CHECKOUT);
 </script>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-         color: #4A554D; background: #FFFFFF; max-width: 34rem; margin: 4rem auto; padding: 0 1rem; line-height: 1.6; }
-  @media (prefers-color-scheme: dark) { body { color: #AEB8B0; background: #131A15; } }
-  h1 { color: #2F8F5B; font-size: 1.6rem; margin-bottom: 0.6rem; }
-  a { color: #2F8F5B; }
+  :root {
+    --bg: #FFFFFF; --paper: #F3F7F4; --ink: #1C2620; --body: #46524A; --caption: #78857C;
+    --line: #DFE7E1; --green: #2F8F5B; --green-strong: #256F47; --on-green: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111713; --paper: #171F19; --ink: #E6EEE8; --body: #AEB8B0; --caption: #8C9A90;
+      --line: #27322A; --green: #5FB584; --green-strong: #7CC79B; --on-green: #0E1410;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--body);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1.0625rem; line-height: 1.6;
+  }
+  main {
+    max-width: 36rem; margin: 0 auto; padding-block: 3.5rem 4rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  a { color: var(--green); }
+  .brand { display: flex; align-items: center; gap: .5rem; color: var(--ink); font-weight: 650; text-decoration: none; margin-bottom: 2rem; }
+  .brand img { width: 24px; height: 24px; }
+  h1 { color: var(--ink); font-size: 1.9rem; line-height: 1.15; margin: 0 0 .4rem; letter-spacing: -0.02em; }
+  .price { color: var(--ink); font-size: 1.3rem; font-weight: 700; margin: 0 0 1.2rem; }
+  .price span { color: var(--caption); font-size: 1rem; font-weight: 500; }
+  ul { padding-left: 1.2rem; margin: 0 0 1.4rem; }
+  li { margin: .3rem 0; }
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem 1.3rem; }
+  .card p { margin: 0 0 .7rem; }
+  form { display: flex; gap: .6rem; flex-wrap: wrap; }
+  input {
+    flex: 1 1 14rem; min-width: 0; font: inherit; padding: .65rem .85rem; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  }
+  button {
+    font: inherit; font-weight: 600; padding: .65rem 1.2rem; border-radius: 10px; border: none;
+    background: var(--green); color: var(--on-green); cursor: pointer;
+  }
+  button:hover { background: var(--green-strong); }
+  button:disabled { opacity: .6; cursor: default; }
+  .caption { color: var(--caption); font-size: .9rem; }
+  .fine { margin-top: 1.6rem; }
 </style>
 </head>
 <body>
+<main>
+  <a class="brand" href="index.html"><img src="assets/icon.png" alt=""><span>Aloe Scribe</span></a>
   <h1>Aloe Scribe founding license</h1>
-  <p>$29.99 once, through December 31, then $49.99. One license covers your Mac and your Windows PC, with every 1.x update included.</p>
-  <p>If the store didn't open, <a href="index.html#download">leave your email on the home page</a> and you'll get the founding price when it does.</p>
+  <p class="price">$29.99 <span>once, through December 31, 2026. Then $49.99.</span></p>
+  <ul>
+    <li>Summaries, written answers in Ask notes and the voice bank</li>
+    <li>Your Mac and your Windows PC on one license</li>
+    <li>Every update for a year, then $19.99 a year if you want more</li>
+    <li>A full refund within 30 days, for any reason</li>
+  </ul>
+  <p>Every feature already works today. Your key matters from version 1.4 on December 1, when you activate it once and the app checks it on your computer from then on.</p>
+
+  <div class="card" id="hold">
+    <p><strong>Licenses aren&rsquo;t on sale yet.</strong> Leave your email and we will send you the link with the $29.99 founding price held for you, whenever that is.</p>
+    <form id="hold-form">
+      <input type="email" id="hold-email" required autocomplete="email" placeholder="you@example.com" aria-label="Email address">
+      <button type="submit" id="hold-btn">Hold my price</button>
+    </form>
+    <p class="caption" id="hold-msg" style="margin: .7rem 0 0;">We use this address only for the store link and release notes. Any reply unsubscribes you.</p>
+  </div>
+
+  <p class="caption fine"><a href="terms.html">License terms</a> · <a href="refunds.html">Refund policy</a> · <a href="privacy.html">Privacy policy</a> · <a href="index.html#pricing">Pricing</a></p>
+</main>
+<script>
+// Same table and publishable key as the home page sign-up. Row-level
+// security only lets this key insert into signups, so it cannot read the
+// list. source "founding" marks people waiting for the store link.
+document.getElementById('hold-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var email = document.getElementById('hold-email').value.trim();
+  var btn = document.getElementById('hold-btn');
+  var msg = document.getElementById('hold-msg');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  var platform = /Mac/i.test(navigator.userAgent) ? 'mac'
+    : /Win/i.test(navigator.userAgent) ? 'windows' : null;
+  fetch('https://yutdoypkyimlygtuzcek.supabase.co/rest/v1/signups', {
+    method: 'POST',
+    headers: {
+      apikey: 'sb_publishable_my2ZuEr5nF4PzWhCUK641w_3jq9Sq3K',
+      'Content-Type': 'application/json',
+      Prefer: 'return=minimal'
+    },
+    body: JSON.stringify({ email: email, source: 'founding', platform: platform })
+  }).then(function (r) {
+    if (r.ok) {
+      msg.textContent = 'Saved. Your founding price is held, and the store link comes to this address.';
+      document.getElementById('hold-form').hidden = true;
+    } else {
+      msg.textContent = 'That did not save. Check the address and try again.';
+      btn.disabled = false;
+      btn.textContent = 'Hold my price';
+    }
+  }).catch(function () {
+    msg.textContent = 'That did not save. Check your connection and try again.';
+    btn.disabled = false;
+    btn.textContent = 'Hold my price';
+  });
+});
+</script>
+<script data-goatcounter="https://aloescribe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
