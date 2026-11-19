@@ -157,7 +157,9 @@
       $("block").value = d.block;
       var until = d.updates_until && new Date(d.updates_until + "T12:00:00Z");
       $("updates").hidden = !until;
-      if (until) {
+      if (until && d.updates_until >= "9999") {
+        $("updates").textContent = "It includes every update, with no end date.";
+      } else if (until) {
         $("updates").textContent = "It includes every update released through " +
           until.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) +
           ". Those versions stay yours after that date.";
