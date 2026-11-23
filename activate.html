@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Get your license. Aloe Scribe.</title>
-<meta name="description" content="Turn your Aloe Scribe receipt or code into the license you paste into the app.">
+<meta name="description" content="Get the Aloe Scribe license you paste into the app, after buying or with a code.">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="assets/icon.png">
 <link rel="canonical" href="https://aloescribe.ai/activate.html">
@@ -68,6 +68,11 @@
     height: 11rem; resize: vertical; margin: 0.8rem 0;
   }
   .steps { margin: 1rem 0 0 1.2rem; }
+  .wait { display: flex; gap: 0.75rem; align-items: flex-start; padding: 1rem 1.1rem; border: 1.5px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--ink); }
+  .wait .dot { flex: none; width: 0.7rem; height: 0.7rem; margin-top: 0.5rem; border-radius: 50%; background: var(--green); animation: pulse 1.2s ease-in-out infinite; }
+  .wait.slow .dot { animation: none; background: var(--caption); }
+  @keyframes pulse { 50% { opacity: 0.25; } }
+  @media (prefers-reduced-motion: reduce) { .wait .dot { animation: none; } }
   .steps li + li { margin-top: 0.3rem; }
   [hidden] { display: none !important; }
 </style>
@@ -81,19 +86,25 @@
 <main>
   <div class="wrap">
     <h1>Get your license</h1>
-    <p class="lede">Paste the key from your receipt, or the code someone gave you. This page turns it into the license you paste into Aloe Scribe. The app checks it on your computer and never goes online for it.</p>
+    <p class="lede">Bought a license? It shows up on this page right after checkout. Have a code? Enter it below. Either way you get a license to paste into Aloe Scribe, which checks it on your computer and never goes online for it.</p>
 
     <div class="tabs" role="tablist">
       <button class="tab" role="tab" id="tabStore" aria-selected="true">I bought a license</button>
       <button class="tab" role="tab" id="tabCode" aria-selected="false">I have a code</button>
     </div>
 
+    <div class="wait" id="wait" role="status" aria-live="polite" hidden>
+      <span class="dot" aria-hidden="true"></span>
+      <p id="waitText">Thanks for buying Aloe Scribe. Your license is being made. This takes a few seconds.</p>
+    </div>
+
     <form id="storeForm">
-      <label>License key from your receipt email
-        <input id="storeKey" autocomplete="off" spellcheck="false" placeholder="ALOE-XXXX-XXXX-XXXX">
+      <p>Your license appeared on this page when you paid. If you closed it, enter the email you bought with and we&rsquo;ll send the license there again.</p>
+      <label>Email you bought with
+        <input id="resendEmail" type="email" autocomplete="email">
       </label>
-      <button class="btn" type="submit">Get my license</button>
-      <p class="caption">Lost it? The same key gets the same license again, as many times as you need.</p>
+      <button class="btn" type="submit">Send my license</button>
+      <p class="caption" id="resendMsg" role="status"></p>
     </form>
 
     <form id="codeForm" hidden>
@@ -122,6 +133,7 @@
         <li>Paste it and choose Add.</li>
       </ol>
       <p class="caption" id="updates" style="margin-top: 1rem;" hidden></p>
+      <p class="caption" id="mailed" hidden></p>
       <p class="caption">The same license works on your Mac and your Windows PC. Keep a copy with your receipt.</p>
     </div>
   </div>
@@ -142,18 +154,18 @@
   $("tabCode").onclick = function () { show("code"); };
   var q = new URLSearchParams(location.search);
   if (q.get("code")) { show("code"); $("code").value = q.get("code"); }
-  if (q.get("key")) { $("storeKey").value = q.get("key"); }
 
-  function send(form, body) {
-    var btn = form.querySelector("button");
-    btn.disabled = true; $("err").textContent = "";
-    fetch(URL_, {
+  function post(body) {
+    return fetch(URL_, {
       method: "POST",
       headers: { "Content-Type": "application/json", apikey: KEY },
       body: JSON.stringify(body)
-    }).then(function (r) { return r.json(); }).then(function (d) {
-      btn.disabled = false;
-      if (!d || d.error || !d.block) { $("err").textContent = (d && d.error) || "That didn't work. Try again."; return; }
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (d) { d = d || {}; d._status = r.status; return d; });
+    });
+  }
+
+  function showLicense(d) {
       $("block").value = d.block;
       var until = d.updates_until && new Date(d.updates_until + "T12:00:00Z");
       $("updates").hidden = !until;
@@ -164,16 +176,78 @@
           until.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) +
           ". Those versions stay yours after that date.";
       }
+      $("mailed").hidden = !d.mailed_to;
+      if (d.mailed_to) $("mailed").textContent = "A copy is also in your email at " + d.mailed_to + ".";
       $("result").style.display = "block";
       $("result").scrollIntoView({ behavior: "smooth" });
+  }
+
+  function send(form, body) {
+    var btn = form.querySelector("button");
+    btn.disabled = true; $("err").textContent = "";
+    post(body).then(function (d) {
+      btn.disabled = false;
+      if (d.error || !d.block) { $("err").textContent = d.error || "That didn't work. Try again."; return; }
+      showLicense(d);
     }).catch(function () {
       btn.disabled = false;
       $("err").textContent = "This page couldn't reach the license service. Check your connection and try again.";
     });
   }
+
+  // Polar sends buyers here with ?checkout_id=... once they've paid. The
+  // license is made when Polar tells the license service about the order,
+  // usually within seconds, so ask until it's there.
+  var checkout = q.get("checkout_id");
+  if (checkout) {
+    show("store");
+    $("storeForm").hidden = true;
+    $("wait").hidden = false;
+    var started = Date.now(), misses = 0;
+    var poll = function () {
+      post({ action: "order", checkout_id: checkout }).then(function (d) {
+        misses = 0;
+        if (d._status === 200 && d.block) {
+          $("wait").hidden = true;
+          showLicense(d);
+          // The email goes out a moment after the license is made.
+          if (!d.mailed_to) setTimeout(function () {
+            post({ action: "order", checkout_id: checkout }).then(function (e) { if (e.mailed_to) showLicense(e); }).catch(function () {});
+          }, 5000);
+          return;
+        }
+        if (d._status !== 202) {
+          $("wait").hidden = true;
+          $("err").textContent = d.error || "Something went wrong getting your license. Reload this page, or write to feedback@aloescribe.ai.";
+          return;
+        }
+        next();
+      }).catch(function () { misses += 1; next(); });
+    };
+    var next = function () {
+      var waited = Date.now() - started;
+      if (waited > 60000) {
+        $("wait").className = "wait slow";
+        $("waitText").textContent = "Your payment went through, and your license is taking longer than usual. Keep this page open, or come back to this same link later, since it keeps working. If it still isn't here in ten minutes, write to feedback@aloescribe.ai.";
+      }
+      if (waited > 30 * 60000) return;
+      setTimeout(poll, waited < 60000 && !misses ? 2000 : 10000);
+    };
+    poll();
+  }
+
   $("storeForm").onsubmit = function (e) {
     e.preventDefault();
-    send(this, { action: "store", key: $("storeKey").value });
+    var btn = this.querySelector("button");
+    btn.disabled = true; $("err").textContent = ""; $("resendMsg").textContent = "";
+    post({ action: "resend", email: $("resendEmail").value }).then(function (d) {
+      btn.disabled = false;
+      if (d.error) { $("err").textContent = d.error; return; }
+      $("resendMsg").textContent = d.message || "Sent.";
+    }).catch(function () {
+      btn.disabled = false;
+      $("err").textContent = "This page couldn't reach the license service. Check your connection and try again.";
+    });
   };
   $("codeForm").onsubmit = function (e) {
     e.preventDefault();
