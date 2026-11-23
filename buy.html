@@ -8,10 +8,12 @@
 <link rel="icon" type="image/png" href="assets/icon.png">
 <!-- The app's Buy a license button and the site's pricing button open
      aloescribe.ai/buy, so the store can change without an app release.
-     Put the Polar checkout link in CHECKOUT below. Until it is set, this
-     page takes an email for the founding price instead. -->
+     CHECKOUT is the Polar checkout link for the founding license. Polar
+     sends buyers on to aloescribe.ai/activate, where their license shows.
+     With CHECKOUT empty, this page takes an email for the founding price
+     instead. -->
 <script>
-  var CHECKOUT = "";
+  var CHECKOUT = "https://buy.polar.sh/polar_cl_Gih7JYq7RwTV8YQaO3cwxDVjxvJPlN4fmWLaY29hWhF";
   if (CHECKOUT) location.replace(CHECKOUT);
 </script>
 <style>
@@ -70,7 +72,7 @@
   <ul>
     <li>Every feature after the 10-meeting trial, from recording to summaries and Ask notes</li>
     <li>Your Mac and your Windows PC on one license</li>
-    <li>Every update for a year, then $19.99 a year if you want more</li>
+    <li>Every update for a year, then $19.99 a year if you want continued updates and maintenance</li>
     <li>A full refund within 30 days, for any reason</li>
   </ul>
   <p>Every feature already works today. Your key matters from version 1.4 on December 1, when you activate it once and the app checks it on your computer from then on.</p>

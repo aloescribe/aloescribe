@@ -202,6 +202,8 @@
   if (checkout) {
     show("store");
     $("storeForm").hidden = true;
+    // A buyer only needs their license here, not the code and resend forms.
+    document.querySelector(".tabs").hidden = true;
     $("wait").hidden = false;
     var started = Date.now(), misses = 0;
     var poll = function () {
