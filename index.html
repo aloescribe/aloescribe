@@ -391,6 +391,7 @@
   .price { font-family: var(--display); font-size: 2.1rem; font-weight: 800; color: var(--ink); letter-spacing: -0.02em; line-height: 1.1; }
   .price span { font-family: var(--text); font-size: 1rem; font-weight: 600; color: var(--caption); letter-spacing: 0; }
   .price-card { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
+  #download { scroll-margin-top: 1.5rem; }
   .card.wide p + p { margin-top: .2rem; }
   .signup-row { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: .3rem; }
   .signup-row input {
@@ -800,74 +801,40 @@
       <div class="head">
         <p class="kicker">Pricing</p>
         <h2>Try it free for 10 meetings. Then pay once.</h2>
-        <p>Download it free and use every feature for your first 10 meetings. There is no credit card and no account. After that, a license keeps recording, transcripts, summaries and the rest working. Without one, you can still open, search and edit the notes you already have. You pay once, not every month, and a year of updates is included.</p>
+        <p>Every feature is free for your first 10 meetings, with no credit card and no account. After that, one payment keeps it all working.</p>
       </div>
       <div class="two">
-        <div class="card">
+        <div class="card" id="download">
           <h3>Free trial</h3>
           <p class="price">10 <span>meetings</span></p>
           <p class="caption">Every feature, with no time limit. No credit card and no account.</p>
-          <ul>
-            <li>Recording from your mic and the call</li>
-            <li>The live transcript and speaker labels</li>
-            <li>Summaries with decisions and action items</li>
-            <li>Written answers in Ask notes</li>
-            <li>Every note you save, as plain files you keep</li>
-          </ul>
-          <p class="caption">After the trial, a license keeps every feature. Without one, you can still open, search and edit the notes you already have.</p>
-          <div class="dl-row"><a class="btn ghost" href="#download">Download the free trial</a></div>
+          <div class="dl-row">
+            <a class="btn" id="mac-dmg-btn" href="https://github.com/aloescribe/aloescribe/releases/latest">Download for Mac</a>
+            <a class="btn" id="win-dl-btn" href="https://github.com/aloescribe/aloescribe/releases/download/windows-v1.3.48/AloeScribeSetup.exe">Download for Windows</a>
+          </div>
+          <p class="caption">Mac with Apple Silicon, or Windows 10 and 11. <span id="win-dl-meta">Version 1.3.48 · signed, SHA-256 on the release</span></p>
         </div>
         <div class="card price-card">
           <h3>Founding license</h3>
           <p class="price">$29.99 <span>once</span></p>
           <p class="caption">The founding price. It moves to $49.99 in 2027.</p>
           <ul>
-            <li>Recording, the live transcript and speaker labels</li>
-            <li>Summaries with decisions and action items</li>
-            <li>Written answers in Ask notes</li>
-            <li>The voice bank, which knows voices from earlier meetings</li>
+            <li>Every feature after the trial: recording, summaries, Ask notes and the voice bank</li>
             <li>Your Mac and your Windows PC on one license</li>
-            <li>Every update for a year, then $19.99 a year if you want more</li>
+            <li>Every update for a year, then $19.99 a year if you want continued updates and maintenance</li>
             <li>A full refund within 30 days, for any reason</li>
           </ul>
           <div class="dl-row"><a class="btn" href="buy.html" id="buy-btn">Get the founding license</a></div>
         </div>
       </div>
       <div class="card wide">
-        <h3>What changes, and when</h3>
-        <p>Today every feature works for free, with nothing to enter. Version 1.4 arrives on December 1. From then, a new install gets every feature for its first 10 meetings, with no time limit. After that, recording and the other features need a license, and without one you can still open, search and edit the notes you already have.</p>
-        <p>A license unlocks every version released in the year after you buy it, and those versions keep working with no end date. After that year, the version you have keeps every feature. Another year of updates is $19.99, and you only pay it if you want the newer versions.</p>
-        <p>When you buy, your license key arrives by email right away. You activate it once when 1.4 arrives, and from then on the app checks it on your computer. There is no account, and the app never calls a license server.</p>
+        <h3>Good to know</h3>
+        <ul>
+          <li>Every feature is free for everyone until December 1, when version 1.4 starts the 10-meeting trial. A computer that had Aloe Scribe before November 24 keeps every feature for good.</li>
+          <li>Without a license after the trial, you can still open, search and edit all your notes.</li>
+          <li>Your license shows on screen right after checkout. You add it in Settings once 1.4 arrives.</li>
+        </ul>
         <p class="caption">Read the <a href="terms.html">license terms</a>, the <a href="refunds.html">refund policy</a> and the <a href="privacy.html">privacy policy</a>.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="download" class="ruled">
-    <div class="wrap">
-      <div class="head">
-        <p class="kicker">Download</p>
-        <h2>Get Aloe Scribe</h2>
-        <p>The download is free, and so are your first 10 meetings with every feature. No credit card. <a href="#pricing">Pricing</a> shows what changes on December 1.</p>
-      </div>
-      <div class="two">
-        <div class="card" id="mac-card">
-          <h3>Mac</h3>
-          <p>Signed and notarized. Download, open, drag to Applications.</p>
-          <div class="dl-row">
-            <a class="btn" id="mac-dmg-btn" href="https://github.com/aloescribe/aloescribe/releases/latest">Download for Mac</a>
-            <span class="caption" id="mac-dmg-meta">SHA-256 published on the release</span>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Windows</h3>
-          <p>Signed installer, 1.8 GB, no admin rights needed. It carries the transcription model, so recording works offline from the first launch. A one-time setup then downloads the summary model sized for your PC and the meaning search model for Ask notes.</p>
-          <div class="dl-row">
-            <a class="btn" id="win-dl-btn" href="https://github.com/aloescribe/aloescribe/releases/download/windows-v1.3.48/AloeScribeSetup.exe">Download for Windows</a>
-            <span class="caption" id="win-dl-meta">Version 1.3.48 · SHA-256 published on the release</span>
-          </div>
-          <p class="caption">SmartScreen can still warn while the new signature builds its reputation. If it does, click "More info", then "Run anyway". Once installed, Check for updates in Settings installs new versions in place.</p>
-        </div>
       </div>
       <div class="card wide">
         <h3>Release notes by email</h3>
@@ -903,7 +870,7 @@
       </details>
       <details>
         <summary>What does it cost?</summary>
-        <p>Aloe Scribe is free to download, with every feature for your first 10 meetings and no credit card. Today every feature works with no limit. From version 1.4 on December 1, a new install needs a license after its first 10 meetings to keep recording, transcribing and summarizing. Without one, you can still open, search and edit the notes you already have. A founding license is $29.99 once, and the price moves to $49.99 in 2027. One license covers your Mac and your Windows PC and includes a year of updates. After that year the version you have keeps working, and another year of updates is $19.99. You can get a full refund within 30 days. There is still no account. The details are in <a href="#pricing">Pricing</a>.</p>
+        <p>Aloe Scribe is free to download, with every feature for your first 10 meetings and no credit card. Today every feature works with no limit. From version 1.4 on December 1, Aloe Scribe needs a license after your first 10 meetings with it to keep recording, transcribing and summarizing. Without one, you can still open, search and edit the notes you already have. A founding license is $29.99 once, and the price moves to $49.99 in 2027. One license covers your Mac and your Windows PC and includes a year of updates. After that year the version you have keeps working, and another year of updates is $19.99. You can get a full refund within 30 days. There is still no account. The details are in <a href="#pricing">Pricing</a>.</p>
       </details>
       <details>
         <summary>How does it compare to Granola, Otter or MacWhisper?</summary>
@@ -912,6 +879,10 @@
       <details>
         <summary>Does it work offline?</summary>
         <p>Only to download the app and its models. After installation, recording, transcription, speaker identification, summaries and Ask notes all work offline.</p>
+      </details>
+      <details>
+        <summary>Windows warned me before installing. Is it safe?</summary>
+        <p>The Windows installer is signed, and the Mac app is signed and notarized by Apple. SmartScreen can still warn while a new signature builds its reputation. If it does, choose "More info", then "Run anyway". Once it's installed, Check for updates in Settings installs new versions in place.</p>
       </details>
       <details>
         <summary>What format are the transcripts?</summary>
@@ -953,12 +924,10 @@ fetch('version.json', { cache: 'no-cache' }).then(function (r) { return r.json()
   if (v.windows && v.windows.url) {
     document.getElementById('win-dl-btn').href = v.windows.download || v.windows.url;
     document.getElementById('win-dl-meta').textContent =
-      'Version ' + v.windows.version + ' · SHA-256 published on the release';
+      'Version ' + v.windows.version + ' · signed, SHA-256 on the release';
   }
   if (v.mac && v.mac.url) {
     document.getElementById('mac-dmg-btn').href = v.mac.download || v.mac.url;
-    document.getElementById('mac-dmg-meta').textContent =
-      'Version ' + v.mac.version + ' · SHA-256 published on the release';
   }
 }).catch(function () {});
 
