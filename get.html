@@ -78,11 +78,11 @@
 <script>
 fetch('version.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (v) {
   if (v.mac && v.mac.url) {
-    document.getElementById('mac-btn').href = v.mac.url;
+    document.getElementById('mac-btn').href = v.mac.download || v.mac.url;
     document.getElementById('mac-meta').textContent = 'Version ' + v.mac.version + '. Open the file and drag Aloe Scribe to Applications.';
   }
   if (v.windows && v.windows.url) {
-    document.getElementById('win-btn').href = v.windows.url;
+    document.getElementById('win-btn').href = v.windows.download || v.windows.url;
     document.getElementById('win-meta').textContent = 'Version ' + v.windows.version + ', about 1.8 GB. If Windows SmartScreen warns, click More info, then Run anyway.';
   }
 }).catch(function () {});
