@@ -134,6 +134,7 @@
       </ol>
       <p class="caption" id="updates" style="margin-top: 1rem;" hidden></p>
       <p class="caption" id="mailed" hidden></p>
+      <p class="caption">No License section in Settings? Your copy is from before version 1.4, which comes out December 1, and every feature already works on it. Add the license once you update.</p>
       <p class="caption">The same license works on your Mac and your Windows PC. Keep a copy with your receipt.</p>
     </div>
   </div>
@@ -220,7 +221,7 @@
         }
         if (d._status !== 202) {
           $("wait").hidden = true;
-          $("err").textContent = d.error || "Something went wrong getting your license. Reload this page, or write to feedback@aloescribe.ai.";
+          $("err").textContent = d.error || "Something went wrong getting your license. Reload this page, or write to support@aloescribe.ai.";
           return;
         }
         next();
@@ -230,7 +231,7 @@
       var waited = Date.now() - started;
       if (waited > 60000) {
         $("wait").className = "wait slow";
-        $("waitText").textContent = "Your payment went through, and your license is taking longer than usual. Keep this page open, or come back to this same link later, since it keeps working. If it still isn't here in ten minutes, write to feedback@aloescribe.ai.";
+        $("waitText").textContent = "Your payment went through, and your license is taking longer than usual. Keep this page open, or come back to this same link later, since it keeps working. If it still isn't here in ten minutes, write to support@aloescribe.ai.";
       }
       if (waited > 30 * 60000) return;
       setTimeout(poll, waited < 60000 && !misses ? 2000 : 10000);
