@@ -1,8 +1,9 @@
 {
   "windows": {
-    "version": "1.3.48",
-    "url": "https://github.com/aloescribe/aloescribe/releases/download/windows-v1.3.48/AloeScribeSetup.exe",
-    "sha256": "9e343d92f89fb9ab4e8336fd764d4e0939392c1bcfac58aa37b148904f63b4a1"
+    "version": "1.3.49",
+    "url": "https://github.com/aloescribe/aloescribe/releases/download/windows-v1.3.49/AloeScribeSetup-update.exe",
+    "download": "https://github.com/aloescribe/aloescribe/releases/download/windows-v1.3.49/AloeScribeSetup.exe",
+    "sha256": "80c18befbd7dd8fab356acd233ac0308a987a78469627857904f6b2bd8afdabd"
   },
   "mac": {
     "version": "1.3.49",
